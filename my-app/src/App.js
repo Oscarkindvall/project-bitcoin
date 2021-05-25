@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Dimmer, Loader, Select, Card} from 'semantic-ui-react';
 import Chart from "react-apexcharts";
+import SaveData from './saveData';
+
 
 const options = [
 {value: "USD", text: "USD"},
@@ -21,22 +23,21 @@ useEffect(() => {
   async function fetchData() {
     const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
     const data = await res.json();
-    console.log(res)
     console.log(data)
     console.log(data.bpi)
     setPrice(data.bpi);
-    setCurrency("EUR");
-    getChartData();
+    getChartData(currency);
   }
   fetchData();
 }, []);
 
   const handleSelect = (e, data) => {
     setCurrency(data.value);
+    getChartData(data.value);
   }
 
-  const getChartData = async () => {
-    const res = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+  const getChartData = async (chartCurrency) => {
+    const res = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?currency='+chartCurrency)
     const data = await res.json();
     const categories = Object.keys(data.bpi); //Turn it into an array of Keys.
     const series = Object.values(data.bpi);
@@ -72,6 +73,7 @@ useEffect(() => {
             </Dimmer>
             </div>
           ) : (
+            <>
             <div className="price-container">
               <Select placeholder="Select currency" 
               onChange={handleSelect} 
@@ -91,8 +93,12 @@ useEffect(() => {
               type="line"
               width="1200"
               height="300"/>
-
             </div>
+            
+            <div>
+              <SaveData/> 
+            </div>
+            </>
           )
         }
     </div>
