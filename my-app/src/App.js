@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Dimmer, Loader, Select, Card} from 'semantic-ui-react';
 import Chart from "react-apexcharts";
 import SaveData from './saveData';
+import Article from './article';
 
 
 const options = [
@@ -97,7 +98,12 @@ useEffect(() => {
             
             <div>
               <SaveData/> 
+            </div>            
+            
+            <div>
+              <Article/> 
             </div>
+
             </>
           )
         }

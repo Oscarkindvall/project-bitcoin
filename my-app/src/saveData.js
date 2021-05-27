@@ -2,6 +2,7 @@ import React, { useRef, useState} from 'react';
 import Portfolio from './portfolio';
 
 
+
 const getPriceOnDate = async (date, amount) => {
     const res = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start='+date+'&end='+date);
     const data = await res.json();
@@ -15,7 +16,7 @@ const getPriceOnDate = async (date, amount) => {
     
     return {buyDate, buyAmount, bitcoinValue, buySize}
   }
-
+  
 
 export function LoadData() {
     let localPortfolio= localStorage.getItem("portfolio");
@@ -67,15 +68,8 @@ export default function SaveData() {
           })
 
         amountRef.current.value = "";
-        dateRef.current.value = "";
+        dateRef.current.value = "";  
     }
-
-
-    //   function deleteMovie(title) {
-    //     const newList = portfolio.filter((movie) => movie.title !== title);
-    
-    //     setportfolio(newList);
-    // }
 
         return (
           <>
@@ -90,6 +84,7 @@ export default function SaveData() {
             </form>
             <input onClick={addCoin} type="submit" className="btn btn-success mt-3" value="Registrera köp" />
             </div>
+           
             
             <div> 
               {<Portfolio portfolio={portfolio}/> }
