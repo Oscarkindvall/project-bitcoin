@@ -19,22 +19,23 @@ const getPriceOnDate = async (date, amount) => {
   
 
 export function LoadData() {
-    let localPortfolio= localStorage.getItem("portfolio");
-    if(localPortfolio == null){
+    let savedPortfolio = localStorage.getItem("portfolio");
+    if(savedPortfolio == null){
     //Exist data in local
-        localStorage.setItem("portfolio", JSON.stringify([]));
+      savedPortfolio.setItem("portfolio", JSON.stringify([]));
         // Returnerar en tom lista (= inga todos)
         return [];
         
     }else{
     //Non Exist data block
-        return JSON.parse(localPortfolio);
+        return JSON.parse(savedPortfolio);
     }
 }
 
 export default function SaveData() {
     let localPortfolio = []
     
+
     LoadData().forEach(portObject => {
       // Loops through each object from storage
       localPortfolio.push(portObject)
@@ -44,6 +45,7 @@ export default function SaveData() {
       // Declares localStorage object values as default for portfolio
       localPortfolio
     );
+    console.log(portfolio)
 
     const dateRef = useRef();
     const amountRef = useRef();
@@ -66,7 +68,6 @@ export default function SaveData() {
               bitcoinValue: result.bitcoinValue[0]
             }]);
           })
-
         amountRef.current.value = "";
         dateRef.current.value = "";  
     }

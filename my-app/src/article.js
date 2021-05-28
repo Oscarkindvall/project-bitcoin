@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
 
-let key = "EpxB0D2US4cMY5RWaAlssDVQ1SQ6nefh";
+
+let key = "rb0nYhAxUturfu9NzO9OJyq5kCa3N2gh";
 // pub_date	Timestamp (YYYY-MM-DD)
 // let date = "2021-05-20"
 // pub_date=2021-05-06
@@ -20,21 +21,49 @@ const getArticle = async () => {
     return {headline,pubDate,webUrl,abstract,articleImg}
   }
 
+
+
+    
+
+
+
   
   
 export default function Article() {
 
-  const [article, setArticle] = useState(null);
+  const articleCollection = []
 
   // const [article, setArticle] = useState(
-  //   {
+  //   articleCollection
+  // );
+
+  const fetchArticle = getArticle();
+  fetchArticle.then(function(result) {
+    articleCollection.push(result);
+        console.log(result);
+  });
+
+  
+
+  // fetchArticle.then(function(result) {
+  //   setArticle([...articleCollection, {
   //     headline: "", 
   //     pubDate:  "",
   //     webUrl:  "", 
   //     abstract:  "",
   //     articleImg: ""
-  //   }
-  // );
+  //   }])
+  // })
+
+  // setArticle([...articleCollection, {
+  //   headline: articleCollection.headline 
+  // }]);
+
+  // setArticle([articleCollection]);
+
+  console.log(articleCollection)
+
+  
   
   // function createArticle(result)  {
   //   return {
@@ -46,30 +75,6 @@ export default function Article() {
   //   }
   // }
 
-  const fetchArticle = getArticle();
-  fetchArticle.then(function(result) {
-
-    console.log(result);
-    console.log(result.headline);
-    console.log(result.articleImg);
-    console.log(result.pubDate);
-    console.log(result.webUrl);
-    console.log(result.abstract);
-
-    setArticle(result.headline);
-
-    // {}?
-
-    // setArticle({
-    //   headline: result.headline,
-    //   pubDate: result.pubDate,
-    //   webUrl: result.webUrl,
-    //   abstract: result.abstract,
-    //   articleImg: result.articleImg
-    //   )}
-    })
-    
-    console.log(article);
     return (
         <>
     {/* <div class="card">
@@ -82,12 +87,14 @@ export default function Article() {
           <div>
           <h2>Articles</h2>  
           </div> */}
+          {/* {console.log(articleCollection)} */}
         <div>
           <article> 
-           <div> {article} </div>
+           <div> {console.log(articleCollection)} </div>
+          
            {/* <div> {article.headline} </div>
            <div> {article.abstract} </div>
-           <div> {article.pubDate} </div>
+           <div> {artiscle.pubDate} </div>
            <div> {article.articleImg} </div>
            <div> {article.webUrl} </div> */}
           </article>

@@ -19,7 +19,6 @@ const [currency, setCurrency] = useState("USD");
 const [chartData, setChartData] = useState(null);
 const [series, setSeries] = useState(null);
 
-
 useEffect(() => {
   async function fetchData() {
     const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
@@ -84,7 +83,9 @@ useEffect(() => {
               <Card>
                 <Card.Content>
                   <Card.Header>{currency}</Card.Header>
+                
                   <Card.Description>{price[currency].rate}</Card.Description>
+                  {console.log(price)}
                 </Card.Content>
 
               </Card>
