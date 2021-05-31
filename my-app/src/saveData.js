@@ -1,5 +1,8 @@
 import React, { useRef, useState} from 'react';
 import Portfolio from './portfolio';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import $ from 'jquery';
 
 
 
@@ -44,9 +47,17 @@ export default function SaveData() {
       // Declares localStorage object values as default for portfolio
       localPortfolio
     );
-
+   
     const dateRef = useRef();
     const amountRef = useRef();
+    // const [startDate, setStartDate] = useState(new Date());
+    
+    
+    const [startDate, setStartDate] = useState(new Date("2021-05-11"));
+
+   
+    
+    
 
     function addCoin(e) {
           // const newId = portfolio.length > 0 ? portfolio[portfolio.length - 1].id + 1 : 1;
@@ -56,6 +67,14 @@ export default function SaveData() {
             localStorage.setItem("portfolio", JSON.stringify(Local));
           }
 
+          // let newDate = startDate.format("YYYY-MM-DD")
+          // console.log(newDate);
+
+   
+          // TODODOODODODODODO
+          console.log(startDate);
+          console.log(dateRef.value);
+          console.log(dateRef.current.value);
           let priceResult = getPriceOnDate(dateRef.current.value, amountRef.current.value);
           priceResult.then(function(result) {
             saveToLocal(result)
@@ -77,14 +96,18 @@ export default function SaveData() {
             <h2></h2>
             <form id="log-buy" >
                 <legend>Lägg till ett köp</legend>
-            
-                <input type="text" id="amount" className="form-control" placeholder="Amount..." ref={amountRef}/>
-                <input type="text" id="date" className="form-control" placeholder="Date..." ref={dateRef}/>
-                
+                {/* Add className="ui input error" when wrong input */}
+                <div class="ui right labeled input">
+                  <input type="text" id="amount" className="form-control" placeholder="Amount..." ref={amountRef}/>
+                  <div class="ui basic label">
+                      USD
+                  </div>
+                </div>
+                <DatePicker selected={startDate} dateFormat="yyyy-mm-dd" onChange={(date) => setStartDate(date)} ref={dateRef} />
             </form>
-            <input onClick={addCoin} type="submit" className="btn btn-success mt-3" value="Registrera köp" />
+            <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button" value="Registrera köp" />
             </div>
-           
+
             
             <div> 
               {<Portfolio portfolio={portfolio}/> }
@@ -92,3 +115,6 @@ export default function SaveData() {
             </>
             )            
     }
+
+    
+   

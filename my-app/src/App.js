@@ -5,6 +5,12 @@ import SaveData from './saveData';
 import Article from './article';
 
 
+
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
+
+
 const options = [
 {value: "USD", text: "USD"},
 {value: "EUR", text: "EUR"},
@@ -18,8 +24,15 @@ const [price, setPrice] = useState(null);
 const [currency, setCurrency] = useState("USD");
 const [chartData, setChartData] = useState(null);
 const [series, setSeries] = useState(null);
+const [article, setArticle] = useState(null);
+let num = 0;
 
+function checkLoading() {
+  num+=1
+  num > 1 ? setLoad(false) : console.log("only 1 load done")
+} 
 
+//UseEffect the reason for infinity loop doesn't occur anymore?
 useEffect(() => {
   async function fetchData() {
     const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
@@ -28,6 +41,7 @@ useEffect(() => {
     console.log(data.bpi)
     setPrice(data.bpi);
     getChartData(currency);
+    getArticle();
   }
   fetchData();
 }, []);
@@ -40,8 +54,12 @@ useEffect(() => {
   const getChartData = async (chartCurrency) => {
     const res = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?currency='+chartCurrency)
     const data = await res.json();
+    console.log(data)
     const categories = Object.keys(data.bpi); //Turn it into an array of Keys.
     const series = Object.values(data.bpi);
+    console.log(categories)
+    console.log(series)
+
     setChartData({
       xaxis: {
         categories:categories
@@ -54,12 +72,30 @@ useEffect(() => {
       data: series
       }
     ])
-
-    setLoad(false);
-
+    checkLoading();
   }
 
-   
+
+  const getArticle = async()=> {
+    const res = await fetch('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=bitcoin&sort=newest&api-key=EpxB0D2US4cMY5RWaAlssDVQ1SQ6nefh');
+    const data = await res.json();
+    console.log(data);
+    const headline = data.response.docs[0].headline.main;
+    const pubDate = data.response.docs[0].pub_date;
+    const webUrl = data.response.docs[0].web_url;
+    const abstract = data.response.docs[0].abstract;
+    const articleImg = data.response.docs[0].multimedia[0].url;
+
+    setArticle({
+      headline: headline,
+      pubDate: pubDate,
+      webUrl: webUrl,
+      abstract: abstract,
+      articleImg: articleImg
+    })
+    checkLoading();
+  }
+  
   return (
 
     <div className="App">
@@ -101,9 +137,9 @@ useEffect(() => {
             </div>            
             
             <div>
-              <Article/> 
+              {console.log(article)}
+              <Article article={article} /> 
             </div>
-
             </>
           )
         }
