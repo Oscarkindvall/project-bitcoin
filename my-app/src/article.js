@@ -105,7 +105,7 @@ export default function Article(props) {
             
             <div><p>{props.article.abstract}</p></div>
             <div><img src={url + props.article.articleImg}></img></div>
-            <div><p><strong>Publication date:</strong> {props.article.pubDate} </p></div>
+            <div><p><strong>Publication date:</strong> {props.article.pubDate.slice(0,10)} </p></div>
             <div><a href={props.article.webUrl}>Read more... </a></div>
             {/* <div><img src={url + props.article.articleImg}</img></div> */}
           </article>
