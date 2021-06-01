@@ -1,8 +1,12 @@
 import React, { useRef, useState} from 'react';
 import Portfolio from './portfolio';
 import DatePicker from "react-datepicker";
+import moment from 'moment';
+import format from 'date-fns/format';
+
+
 import "react-datepicker/dist/react-datepicker.css";
-import $ from 'jquery';
+
 
 
 
@@ -48,14 +52,43 @@ export default function SaveData() {
       localPortfolio
     );
    
-    const dateRef = useRef();
+    // const dateRef = useRef();
     const amountRef = useRef();
     // const [startDate, setStartDate] = useState(new Date());
     
     
-    const [startDate, setStartDate] = useState(new Date("2021-05-11"));
+    // const [startDate, setStartDate] = useState(new Date());
+    // console.log(startDate);
 
-   
+    
+      const [startDate, setCurrentDate] = useState(new Date());
+      console.log(startDate);
+      
+      function formatDate(date) {
+        // console.log(format(date, 'yyyy-LL-dd')); // 2019-08-23
+
+
+        console.log(date)
+        JSON.stringify(date);
+        console.log(date)
+        let str = JSON.stringify(date);
+        let dateArray = [];
+        dateArray = str.split(' ').map(function (word) {
+          return word
+        })
+        const newDate = dateArray[0].slice(1,11)
+        console.log(newDate)
+        setCurrentDate(newDate)
+      
+      //   // date.slice(4, 15);
+      //   console.log(date)
+      //   setCurrentDate(date)
+      //   // console.log(format(new Date(), 'yyyy-LL-dd')); // 2019-08-23
+      }
+      
+      
+
+  
     
     
 
@@ -73,9 +106,9 @@ export default function SaveData() {
    
           // TODODOODODODODODO
           console.log(startDate);
-          console.log(dateRef.value);
-          console.log(dateRef.current.value);
-          let priceResult = getPriceOnDate(dateRef.current.value, amountRef.current.value);
+          // console.log(dateRef.value);
+          // console.log(dateRef.current.value);
+          let priceResult = getPriceOnDate(startDate, amountRef.current.value);
           priceResult.then(function(result) {
             saveToLocal(result)
             setPortfolio([...portfolio, {
@@ -87,7 +120,7 @@ export default function SaveData() {
           })
 
         amountRef.current.value = "";
-        dateRef.current.value = "";  
+        // dateRef.current.value = "";  
     }
 
         return (
@@ -103,7 +136,11 @@ export default function SaveData() {
                       USD
                   </div>
                 </div>
-                <DatePicker selected={startDate} dateFormat="yyyy-mm-dd" onChange={(date) => setStartDate(date)} ref={dateRef} />
+                <DatePicker selected={new Date()} onChange={date => formatDate(date)} />
+                
+                {/* <DatePicker 
+                format="YYYY - MM - dd"  id="datepicker" selected={startDate} onChange={(date) => setStartDate(date)}
+                /> */}
             </form>
             <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button" value="Registrera köp" />
             </div>
