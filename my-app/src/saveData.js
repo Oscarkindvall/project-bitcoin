@@ -1,4 +1,5 @@
 import React, { useRef, useState} from 'react';
+import { Statistic } from 'semantic-ui-react'
 import Portfolio from './portfolio';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
@@ -68,13 +69,7 @@ export default function SaveData(props) {
       // }
       
       function formatDate(date) {
-        // console.log(format(date, 'yyyy-LL-dd')); // 2019-08-23
-        // const dateTime = datetime.now();
-
-
-        console.log(date)
         JSON.stringify(date);
-        console.log(date)
         let str = JSON.stringify(date);
         let dateArray = [];
         dateArray = str.split(' ').map(function (word) {
@@ -97,56 +92,59 @@ export default function SaveData(props) {
 
 
     function addCoin(e) {
-          // const newId = portfolio.length > 0 ? portfolio[portfolio.length - 1].id + 1 : 1;
-          function saveToLocal(result) {
-            let Local = LoadData();
-            Local.push({date: result.buyDate[0], amount: result.buyAmount, buySize: result.buySize, bitcoinValue: result.bitcoinValue[0]});
-            localStorage.setItem("portfolio", JSON.stringify(Local));
+      
+      if (isNaN(parseInt(amountRef.current.value)) != true) {
+        if (parseInt(amountRef.current.value) != 0) {
+            if (startDate != formatDate(new Date())) {
+            function saveToLocal(result) {
+              let Local = LoadData();
+              Local.push({date: result.buyDate[0], amount: result.buyAmount, buySize: result.buySize, bitcoinValue: result.bitcoinValue[0]});
+              localStorage.setItem("portfolio", JSON.stringify(Local));
+            }
+
+            console.log(startDate);
+            let priceResult = getPriceOnDate(startDate, amountRef.current.value);
+            priceResult.then(function(result) {
+              saveToLocal(result)
+              setPortfolio([...portfolio, {
+                date: result.buyDate[0], 
+                amount: result.buyAmount,
+                buySize: result.buySize, 
+                bitcoinValue: result.bitcoinValue[0]
+              }]);
+            })
+          amountRef.current.value = "";
+            }
+            else {alert("Todays history price is'nt available yet... Please choose an earlier date than today.")}
           }
-
-          // let newDate = startDate.format("YYYY-MM-DD")
-          // console.log(newDate);
-
-   
-          // TODODOODODODODODO
-          console.log(startDate);
-          // console.log(dateRef.value);
-          // console.log(dateRef.current.value);
-          let priceResult = getPriceOnDate(startDate, amountRef.current.value);
-          priceResult.then(function(result) {
-            saveToLocal(result)
-            setPortfolio([...portfolio, {
-              date: result.buyDate[0], 
-              amount: result.buyAmount,
-              buySize: result.buySize, 
-              bitcoinValue: result.bitcoinValue[0]
-            }]);
-          })
-
-        amountRef.current.value = "";
-        // dateRef.current.value = "";  
+        else {alert("Amount of Bitcoins has to be above 0")}
+      }
+      else {alert("Amount of Bitcoins has to be inserted as a number")}
     }
+          
 
         return (
           <>
             <div>
-            <h2></h2>
+            <h2>Bitcoin Portfolio</h2>
             <form id="log-buy" >
-                <legend>Lägg till ett köp</legend>
                 {/* Add className="ui input error" when wrong input */}
-                <div class="ui right labeled input">
+                <div class="ui right labeled input form-inputs">
                   <input type="text" id="amount" className="form-control" placeholder="Amount..." ref={amountRef}/>
                   <div class="ui basic label">
-                      USD
+                      Bitcoin
                   </div>
                 </div>
-                <DatePicker maxDate={moment().toDate()} selected={new Date()}  onChange={date => formatDate(date)} />
-                
-                {/* <DatePicker 
-                format="YYYY - MM - dd"  id="datepicker" selected={startDate} onChange={(date) => setStartDate(date)}
-                /> */}
+
+                <div class="ui right labeled input">
+                  <div class="ui basic label">
+                      Date
+                  </div>
+                </div>
+
+                <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
             </form>
-            <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button" value="Registrera köp" />
+            <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button form-submit" value="Registrera köp" />
             </div>
 
             

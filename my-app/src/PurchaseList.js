@@ -6,10 +6,10 @@ import { Icon, Statistic } from 'semantic-ui-react'
 export default function(props) {
     
     console.log(props)
-    let buyVal = (props.buyObject.bitcoinValue).toFixed(2)
-    let currentVal = props.currentBitcoinValue.USD.rate_float.toFixed(2)
-    let profit = buyVal < currentVal ? true : false;
-    let profitPrecentage = (buyVal/currentVal).toFixed(2)
+    let buyVal = (parseInt(props.buyObject.bitcoinValue).toFixed(2))
+    let currentVal = parseInt(props.currentBitcoinValue.USD.rate_float.toFixed(2))
+    let profit = buyVal < currentVal
+    let profitPrecentage = Math.abs(((buyVal-currentVal)/buyVal).toFixed(2)*100)
     
     return (
         <div>  
@@ -26,7 +26,7 @@ export default function(props) {
                 <Statistic.Value>{currentVal} USD</Statistic.Value>
             </Statistic>
             <Statistic className="list-values" size='mini'>
-                <Statistic.Value>{props.buyObject.buySize*currentVal} USD</Statistic.Value>
+                <Statistic.Value>{(props.buyObject.buySize*currentVal).toFixed(2)} USD</Statistic.Value>
             </Statistic>
                 { profit ? (
                     <Statistic className="list-values" size='mini'>
@@ -41,7 +41,6 @@ export default function(props) {
         </div>
     )
 }
-
 
 
 

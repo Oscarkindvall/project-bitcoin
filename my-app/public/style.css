@@ -2,13 +2,29 @@
     margin: auto;
     text-align: center;
     justify-content: center;
-
 }
 
+.price-container > .ui.card{
+    margin: 15px auto 5px auto;
+}
+.form-legend {
+    display: block !important;
+}
 .chart-visuals {
     width: 90%;
     max-width: 1000px;
     margin: auto;
+}
+
+.form-inputs {
+    margin-right: 15px;
+}
+
+.react-datepicker__input-container > input {
+    line-height: 2.15;
+}
+.form-submit {
+    margin: 10px auto !important;
 }
 
 #log-list {
@@ -16,7 +32,7 @@
     width: 100%;
 }
 
-.label {
+.portfolio-labels {
     width: 200px;
     margin: 15px 0 15px 0!important;
 }
@@ -24,6 +40,10 @@
 .list-values {
     width: 200px;
     margin: 15px 0 15px 0!important;
+}
+
+.log-buy > {
+    margin-right: 25px;
 }
 
 /* Tablet */
