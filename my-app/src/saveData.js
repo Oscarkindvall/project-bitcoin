@@ -1,10 +1,6 @@
 import React, { useRef, useState} from 'react';
 import Portfolio from './portfolio';
 import DatePicker from "react-datepicker";
-import moment from 'moment';
-import format from 'date-fns/format';
-
-
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -39,7 +35,7 @@ export function LoadData() {
     }
 }
 
-export default function SaveData() {
+export default function SaveData(props) {
     let localPortfolio = []
     
     LoadData().forEach(portObject => {
@@ -85,12 +81,7 @@ export default function SaveData() {
       //   setCurrentDate(date)
       //   // console.log(format(new Date(), 'yyyy-LL-dd')); // 2019-08-23
       }
-      
-      
 
-  
-    
-    
 
     function addCoin(e) {
           // const newId = portfolio.length > 0 ? portfolio[portfolio.length - 1].id + 1 : 1;
@@ -147,7 +138,7 @@ export default function SaveData() {
 
             
             <div> 
-              {<Portfolio portfolio={portfolio}/> }
+              {<Portfolio portfolio={portfolio} price={props.price}/> }
             </div>
             </>
             )            

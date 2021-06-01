@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import PurchaseList from './PurchaseList.js';
+import { Statistic } from 'semantic-ui-react'
+
 
 export default function Portfolio(props) {
     console.log(props);
@@ -15,7 +17,15 @@ export default function Portfolio(props) {
             ):(
              <>
             <ul id="log-list" >
-            { props.portfolio.map(buyObject => <PurchaseList buyObject={buyObject}/>) }
+            <Statistic className="portfolio-grid" horizontal>
+                    <Statistic.Label>Datum</Statistic.Label>
+                    <Statistic.Label>Antal</Statistic.Label>
+                    <Statistic.Label>Inköpskurs</Statistic.Label>
+                    <Statistic.Label>Nuvarande kurs</Statistic.Label>
+                    <Statistic.Label>Nuvarande värde</Statistic.Label>
+                    <Statistic.Label>+-%</Statistic.Label>
+            </Statistic>
+            { props.portfolio.map(buyObject => <PurchaseList buyObject={buyObject} currentBitcoinValue={props.price}/>) }
             </ul>
             </>
             )

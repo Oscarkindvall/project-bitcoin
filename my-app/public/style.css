@@ -1,0 +1,40 @@
+.body, html {
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.chart-visuals {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+#log-list {
+    list-style: none;
+    width: 100%;
+}
+
+.label {
+    width: 200px;
+    margin: 15px 0 15px 0!important;
+}
+
+.list-values {
+    width: 200px;
+    margin: 15px 0 15px 0!important;
+}
+
+/* Tablet */
+@media screen and (max-width: 990px) and (min-width: 768px) {
+    .chart-visuals {
+        width: 90%;
+    }
+}
+/* Mobile */
+@media screen and (max-width: 767px) {
+    .chart-visuals {
+        width: 100%;
+    }
+}

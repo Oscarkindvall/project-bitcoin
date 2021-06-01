@@ -4,8 +4,6 @@ import Chart from "react-apexcharts";
 import SaveData from './saveData';
 import Article from './article';
 
-
-
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
@@ -16,6 +14,15 @@ const options = [
 {value: "EUR", text: "EUR"},
 {value: "GBP", text: "GBP"}
 ]
+
+// const respon = {responsive: [
+//   {
+//     breakpoint: 1000,
+//     width: 95%
+//   }
+// ]}
+// const [mobile, setmobile] = useState(true);
+
 
 function App() {
 
@@ -125,15 +132,20 @@ useEffect(() => {
 
               </Card>
 
-              <Chart options={chartData}
+              <Chart className="chart-visuals" options={chartData}
               series={series}
               type="line"
-              width="1200"
+              width="100%"
+              // { mobileSize ? (
+              //   width="90%"
+              //   ) : (
+              //   )
+              // }
               height="300"/>
             </div>
             
             <div>
-              <SaveData/> 
+              <SaveData price={price}/> 
             </div>            
             
             <div>
