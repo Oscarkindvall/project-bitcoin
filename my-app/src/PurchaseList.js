@@ -26,7 +26,7 @@ export default function(props) {
                 <Statistic.Value>{currentVal} USD</Statistic.Value>
             </Statistic>
             <Statistic className="list-values" size='mini'>
-                <Statistic.Value>{props.buyObject.buySize*currentVal} USD</Statistic.Value>
+                <Statistic.Value>{(props.buyObject.buySize*currentVal).toFixed(2)} USD</Statistic.Value>
             </Statistic>
                 { profit ? (
                     <Statistic className="list-values" size='mini'>
@@ -41,7 +41,6 @@ export default function(props) {
         </div>
     )
 }
-
 
 
 

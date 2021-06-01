@@ -124,7 +124,7 @@ useEffect(() => {
               options={options}
               ></Select>
 
-              <Card>
+              <Card className="currency-card">
                 <Card.Content>
                   <Card.Header>{currency}</Card.Header>
                   <Card.Description>{price[currency].rate}</Card.Description>

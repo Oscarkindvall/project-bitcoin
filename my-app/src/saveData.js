@@ -1,4 +1,5 @@
 import React, { useRef, useState} from 'react';
+import { Statistic } from 'semantic-ui-react'
 import Portfolio from './portfolio';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
@@ -129,23 +130,25 @@ export default function SaveData(props) {
         return (
           <>
             <div>
-            <h2></h2>
+            <h2>Bitcoin Portfolio</h2>
             <form id="log-buy" >
-                <legend>Lägg till ett köp</legend>
                 {/* Add className="ui input error" when wrong input */}
-                <div class="ui right labeled input">
+                <div class="ui right labeled input form-inputs">
                   <input type="text" id="amount" className="form-control" placeholder="Amount..." ref={amountRef}/>
                   <div class="ui basic label">
                       USD
                   </div>
                 </div>
+
                 <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
+                <div class="ui right labeled input form-inputs">
+                  <div class="ui basic label">
+                      Date
+                  </div>
+                </div>
                 
-                {/* <DatePicker 
-                format="YYYY - MM - dd"  id="datepicker" selected={startDate} onChange={(date) => setStartDate(date)}
-                /> */}
+                <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button form-submit" value="Registrera köp" />
             </form>
-            <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button" value="Registrera köp" />
             </div>
 
             

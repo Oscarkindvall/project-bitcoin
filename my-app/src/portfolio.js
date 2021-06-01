@@ -18,12 +18,12 @@ export default function Portfolio(props) {
              <>
             <ul id="log-list" >
             <Statistic className="portfolio-grid" horizontal>
-                    <Statistic.Label>Datum</Statistic.Label>
-                    <Statistic.Label>Antal</Statistic.Label>
-                    <Statistic.Label>Inköpskurs</Statistic.Label>
-                    <Statistic.Label>Nuvarande kurs</Statistic.Label>
-                    <Statistic.Label>Nuvarande värde</Statistic.Label>
-                    <Statistic.Label>+-%</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels">Datum</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Antal</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Inköpskurs</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Nuvarande kurs</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Nuvarande värde</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> +-%</Statistic.Label>
             </Statistic>
             { props.portfolio.map(buyObject => <PurchaseList buyObject={buyObject} currentBitcoinValue={props.price}/>) }
             </ul>
