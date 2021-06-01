@@ -96,6 +96,7 @@ export default function Article(props) {
     return ( 
         <>
         <div className="card">
+          <h2>Most recent article on NY Times mentioning Bitcoin </h2>
           <article className="inner-card"> 
             {console.log(props)}
             <div>{console.log(props.article)}</div>
