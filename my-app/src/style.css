@@ -1,14 +1,16 @@
-body {
+body content{
     text-align: center;
 }
 
 .card h2 {
     text-align: center;
-    margin: 10% auto;
+    margin: 10% auto 3%!important;
     letter-spacing: 1px;
-    font-size: 20px;
+    font-size: 35px;
+
     font-family: 'Libre Franklin', sans-serif;
     font-family: 'Lora', serif;
+    border-bottom: 3px solid black;
 
 }
 .inner-card {
@@ -44,6 +46,17 @@ body {
     box-sizing: border-box;
     width: 100%;
     border-radius: 5px;
+}
+
+#NYT {
+    
+   margin-bottom: 10%;
+    text-align: center;
+}
+
+#bitcoinImg {
+    height: 10%;
+    width: 15%;
 }
 
 
