@@ -96,10 +96,12 @@ export default function Article(props) {
     return ( 
         <>
         <div className="card">
-          <h2>Most recent article on NY Times mentioning Bitcoin </h2>
+          
+          <h2>Most recent article on NY Times mentioning <img id="bitcoinImg" src="./images/bitcoin.png"></img> </h2>
           <article className="inner-card"> 
             {console.log(props)}
             <div>{console.log(props.article)}</div>
+            <img id="NYT" src="./images/The_New_York_Times_logo.png"></img>
             <div><h3>{props.article.headline}</h3></div>
             
             
