@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import styles from './style.css';
 
 
 let key = "EpxB0D2US4cMY5RWaAlssDVQ1SQ6nefh";
@@ -23,6 +24,8 @@ let key = "EpxB0D2US4cMY5RWaAlssDVQ1SQ6nefh";
 
   
 export default function Article(props) {
+  console.log(props);
+  const url = "http://www.nytimes.com/";
 
   // let article = [];
 
@@ -92,15 +95,19 @@ export default function Article(props) {
 
     return ( 
         <>
-        <div>
-          <article> 
+        <div className="card">
+          <h2>Most recent article on NY Times mentioning Bitcoin </h2>
+          <article className="inner-card"> 
             {console.log(props)}
             <div>{console.log(props.article)}</div>
-            <div>{props.article.headline}</div>
-            <div>{props.article.pubDate}</div>
-            <div>{props.article.webUrl}</div>
-            <div>{props.article.abstract}</div>
-            <div>{props.article.articleImg}</div>
+            <div><h3>{props.article.headline}</h3></div>
+            
+            
+            <div><p>{props.article.abstract}</p></div>
+            <div><img src={url + props.article.articleImg}></img></div>
+            <div><p><strong>Publication date:</strong> {props.article.pubDate} </p></div>
+            <div><a href={props.article.webUrl}>Read more... </a></div>
+            {/* <div><img src={url + props.article.articleImg}</img></div> */}
           </article>
         </div>
           </>
