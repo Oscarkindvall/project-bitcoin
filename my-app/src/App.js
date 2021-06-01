@@ -128,8 +128,9 @@ useEffect(() => {
               <Chart options={chartData}
               series={series}
               type="line"
-              width="1200"
-              height="300"/>
+              width="75%"
+              height="300"
+              />
             </div>
             
             <div>

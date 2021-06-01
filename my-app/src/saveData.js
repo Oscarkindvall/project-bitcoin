@@ -2,9 +2,6 @@ import React, { useRef, useState} from 'react';
 import Portfolio from './portfolio';
 import DatePicker from "react-datepicker";
 import moment from 'moment';
-import format from 'date-fns/format';
-
-
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -63,9 +60,15 @@ export default function SaveData() {
     
       const [startDate, setCurrentDate] = useState(new Date());
       console.log(startDate);
+
+      // const today = moment();
+      // const disableFutureDate = current => {
+      // return current.isBefore(today)
+      // }
       
       function formatDate(date) {
         // console.log(format(date, 'yyyy-LL-dd')); // 2019-08-23
+        // const dateTime = datetime.now();
 
 
         console.log(date)
@@ -78,7 +81,12 @@ export default function SaveData() {
         })
         const newDate = dateArray[0].slice(1,11)
         console.log(newDate)
-        setCurrentDate(newDate)
+        if(newDate > new Date) {
+          alert("nej");
+        } else {
+          setCurrentDate(newDate)
+        }
+        
       
       //   // date.slice(4, 15);
       //   console.log(date)
@@ -136,7 +144,7 @@ export default function SaveData() {
                       USD
                   </div>
                 </div>
-                <DatePicker selected={new Date()} onChange={date => formatDate(date)} />
+                <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
                 
                 {/* <DatePicker 
                 format="YYYY - MM - dd"  id="datepicker" selected={startDate} onChange={(date) => setStartDate(date)}
