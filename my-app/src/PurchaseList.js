@@ -10,9 +10,6 @@ export default function(props) {
     let currentVal = parseInt(props.currentBitcoinValue.USD.rate_float.toFixed(2))
     let profit = buyVal < currentVal
     let profitPrecentage = Math.abs(((buyVal-currentVal)/buyVal).toFixed(2)*100)
-    console.log(profit)
-    console.log(buyVal)
-    console.log(currentVal)
     
     return (
         <div>  

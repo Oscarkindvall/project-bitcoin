@@ -68,31 +68,19 @@ export default function SaveData(props) {
       // }
       
       function formatDate(date) {
-        // console.log(format(date, 'yyyy-LL-dd')); // 2019-08-23
-        // const dateTime = datetime.now();
-
-
-        console.log(date)
         JSON.stringify(date);
-        console.log(date)
         let str = JSON.stringify(date);
         let dateArray = [];
         dateArray = str.split(' ').map(function (word) {
           return word
         })
         const newDate = dateArray[0].slice(1,11)
-        console.log(newDate)
         if(newDate > new Date) {
           alert("nej");
         } else {
           setCurrentDate(newDate)
+          return newDate
         }
-        
-      
-      //   // date.slice(4, 15);
-      //   console.log(date)
-      //   setCurrentDate(date)
-      //   // console.log(format(new Date(), 'yyyy-LL-dd')); // 2019-08-23
       }
 
 
@@ -100,25 +88,28 @@ export default function SaveData(props) {
       
       if (isNaN(parseInt(amountRef.current.value)) != true) {
         if (parseInt(amountRef.current.value) != 0) {
-          function saveToLocal(result) {
-            let Local = LoadData();
-            Local.push({date: result.buyDate[0], amount: result.buyAmount, buySize: result.buySize, bitcoinValue: result.bitcoinValue[0]});
-            localStorage.setItem("portfolio", JSON.stringify(Local));
-          }
+            if (startDate != formatDate(new Date())) {
+            function saveToLocal(result) {
+              let Local = LoadData();
+              Local.push({date: result.buyDate[0], amount: result.buyAmount, buySize: result.buySize, bitcoinValue: result.bitcoinValue[0]});
+              localStorage.setItem("portfolio", JSON.stringify(Local));
+            }
 
-          console.log(startDate);
-          let priceResult = getPriceOnDate(startDate, amountRef.current.value);
-          priceResult.then(function(result) {
-            saveToLocal(result)
-            setPortfolio([...portfolio, {
-              date: result.buyDate[0], 
-              amount: result.buyAmount,
-              buySize: result.buySize, 
-              bitcoinValue: result.bitcoinValue[0]
-            }]);
-          })
-        amountRef.current.value = "";
-        }
+            console.log(startDate);
+            let priceResult = getPriceOnDate(startDate, amountRef.current.value);
+            priceResult.then(function(result) {
+              saveToLocal(result)
+              setPortfolio([...portfolio, {
+                date: result.buyDate[0], 
+                amount: result.buyAmount,
+                buySize: result.buySize, 
+                bitcoinValue: result.bitcoinValue[0]
+              }]);
+            })
+          amountRef.current.value = "";
+            }
+            else {alert("Todays history price is'nt available yet... Please choose an earlier date than today.")}
+          }
         else {alert("Amount of Bitcoins has to be above 0")}
       }
       else {alert("Amount of Bitcoins has to be inserted as a number")}
