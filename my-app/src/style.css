@@ -13,6 +13,12 @@ body content{
     border-bottom: 3px solid black;
 
 }
+
+.react-datepicker__day--keyboard-selected {
+    border-radius: 0; 
+    background-color: #FFF;
+    color: #000;
+}
 .inner-card {
     display: flex; 
     flex-wrap: wrap;

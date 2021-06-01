@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 
+
 const getPriceOnDate = async (date, amount) => {
     const res = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start='+date+'&end='+date);
     const data = await res.json();
@@ -81,11 +82,11 @@ export default function SaveData(props) {
         })
         const newDate = dateArray[0].slice(1,11)
         console.log(newDate)
-        if(newDate > new Date) {
-          alert("nej");
-        } else {
-          setCurrentDate(newDate)
-        }
+        // if(newDate > new Date) {
+        //   alert("nej");
+        // } else {
+        setCurrentDate(newDate)
+        // }
         
       
       //   // date.slice(4, 15);
@@ -139,7 +140,7 @@ export default function SaveData(props) {
                       USD
                   </div>
                 </div>
-                <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
+                <DatePicker maxDate={moment().toDate()} selected={new Date()}  onChange={date => formatDate(date)} />
                 
                 {/* <DatePicker 
                 format="YYYY - MM - dd"  id="datepicker" selected={startDate} onChange={(date) => setStartDate(date)}
