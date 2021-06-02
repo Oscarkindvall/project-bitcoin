@@ -51,10 +51,51 @@
     .chart-visuals {
         width: 90%;
     }
+    .portContanier {
+        width: 100%;
+    }
+    .list-values {
+        width: 15%;
+        margin: 15px 0 15px 0!important;
+    }
+    .portfolio-labels {
+        width: 20%;
+        margin: 15px 0 15px 0!important;
+    }
+    #log-list {
+        padding-inline-start: 0px;
+    }
+    .li-val {
+        font-size: 50%!important;
+    }
+    .portfolio-grid {
+        display:flex!important;
+    }
 }
 /* Mobile */
 @media screen and (max-width: 767px) {
     .chart-visuals {
         width: 100%;
     }
+    .portContanier {
+        width: 100%;
+    }
+    .list-values {
+        width: 15%;
+        margin: 15px 0 15px 0!important;
+    }
+    .portfolio-labels {
+        width: 20%;
+        margin: 15px 0 15px 0!important;
+    }
+    #log-list {
+        padding-inline-start: 0px;
+    }
+    .li-val {
+        font-size: 50%!important;
+    }
+    .portfolio-grid {
+        display:flex!important;
+    }
+    
 }

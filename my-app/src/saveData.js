@@ -149,7 +149,9 @@ export default function SaveData(props) {
 
             
             <div> 
-              {<Portfolio portfolio={portfolio} price={props.price}/> }
+              < div className="portContanier">
+                {<Portfolio portfolio={portfolio} price={props.price}/> }
+              </div>
             </div>
             </>
             )            

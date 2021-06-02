@@ -17,9 +17,9 @@ export default function Portfolio(props) {
             <Statistic className="portfolio-grid" horizontal>
                     <Statistic.Label className="portfolio-labels"> Date</Statistic.Label>
                     <Statistic.Label className="portfolio-labels"> Amount</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Purchase stock price</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Current stock price</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Total value</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Purchase stock price $</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Current stock price $</Statistic.Label>
+                    <Statistic.Label className="portfolio-labels"> Total value $</Statistic.Label>
                     <Statistic.Label className="portfolio-labels"> +-%</Statistic.Label>
             </Statistic>
             { props.portfolio.map(buyObject => <PurchaseList buyObject={buyObject} currentBitcoinValue={props.price}/>) }
