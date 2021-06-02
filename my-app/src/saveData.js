@@ -140,9 +140,9 @@ export default function SaveData(props) {
                   <div class="ui basic label">
                       Date
                   </div>
+                  <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
                 </div>
 
-                <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
             </form>
             <input onClick={addCoin} type="submit" className="btn btn-success mt-3 ui inverted green button form-submit" value="Registrera köp" />
             </div>

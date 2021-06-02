@@ -7,23 +7,21 @@ export default function Portfolio(props) {
     console.log(props);
     console.log(props.portfolio);
         return (
-            <div>    
+            <div className="portfolio-container">    
             {
             props.portfolio === [] ? (
             <p> Listan är tom, lägg till ett tidigare köp via formuläret ovan</p>
             ):(
              <>
-            <ul id="log-list" >
-            <Statistic className="portfolio-grid" horizontal>
-                    <Statistic.Label className="portfolio-labels"> Date</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Amount</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Purchase stock price $</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Current stock price $</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> Total value $</Statistic.Label>
-                    <Statistic.Label className="portfolio-labels"> +-%</Statistic.Label>
-            </Statistic>
+            <div id="log-list" >
+                <p className="portfolio-labels"> Date</p>
+                <p className="portfolio-labels"> Amount</p>
+                <p className="portfolio-labels"> Purchase stock price $</p>
+                <p className="portfolio-labels"> Current stock price $</p>
+                <p className="portfolio-labels"> Total value $</p>
+                <p className="portfolio-labels"> +-%</p>
+            </div>
             { props.portfolio.map(buyObject => <PurchaseList buyObject={buyObject} currentBitcoinValue={props.price}/>) }
-            </ul>
             </>
             )
             }
