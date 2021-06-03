@@ -28,8 +28,6 @@ function App() {
     async function fetchData() {
       const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
       const data = await res.json();
-      console.log(data)
-      console.log(data.bpi)
       setPrice(data.bpi);
       getChartData(currency);
       getArticle();
@@ -45,11 +43,8 @@ function App() {
   const getChartData = async (chartCurrency) => {
     const res = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?currency='+chartCurrency)
     const data = await res.json();
-    console.log(data)
     const categories = Object.keys(data.bpi); //Turn it into an array of Keys.
     const series = Object.values(data.bpi);
-    console.log(categories)
-    console.log(series)
 
     setChartData({
       xaxis: {
@@ -69,7 +64,6 @@ function App() {
   const getArticle = async()=> {
     const res = await fetch('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=bitcoin&sort=newest&api-key=EpxB0D2US4cMY5RWaAlssDVQ1SQ6nefh');
     const data = await res.json();
-    console.log(data);
     const headline = data.response.docs[0].headline.main;
     const pubDate = data.response.docs[0].pub_date;
     const webUrl = data.response.docs[0].web_url;
