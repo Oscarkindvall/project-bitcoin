@@ -18,7 +18,7 @@ export default function Portfolio(props) {
             <p className="portfolio-labels"> Total value $</p>
             <p className="portfolio-labels"> +-%</p>
         </div>
-        { props.portfolio.map(buyObject => <PurchaseList buyObject={buyObject} currentBitcoinValue={props.price}/>) }
+        { props.portfolio.map(buyObject => <PurchaseList key={buyObject.id} buyObject={buyObject} currentBitcoinValue={props.price}/>) }
         </>
         )
         }

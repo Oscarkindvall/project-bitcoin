@@ -43,7 +43,7 @@ export default function SaveData(props) {
 
     const amountRef = useRef();
     const [startDate, setCurrentDate] = useState(new Date());
-    
+    const [id, setId] = useState(portfolio.length);
     
     function formatDate(date) {
       JSON.stringify(date);
@@ -58,13 +58,12 @@ export default function SaveData(props) {
     }
 
   function addCoin(e) {
-    
     if (isNaN(parseInt(amountRef.current.value)) !== true) {
       if (parseInt(amountRef.current.value) !== 0) {
         if (startDate !== formatDate(new Date())) {
           function saveToLocal(result) {
           let Local = LoadData();
-          Local.push({date: result.buyDate[0], amount: result.buyAmount, buySize: result.buySize, bitcoinValue: result.bitcoinValue[0]});
+          Local.push({id: id+1, date: result.buyDate[0], amount: result.buyAmount, buySize: result.buySize, bitcoinValue: result.bitcoinValue[0]});
           localStorage.setItem("portfolio", JSON.stringify(Local));
           }
 
@@ -72,6 +71,7 @@ export default function SaveData(props) {
           priceResult.then(function(result) {
             saveToLocal(result)
             setPortfolio([...portfolio, {
+              id: id+1,
               date: result.buyDate[0], 
               amount: result.buyAmount,
               buySize: result.buySize, 
@@ -79,6 +79,7 @@ export default function SaveData(props) {
             }]);
           })
             amountRef.current.value = "";
+            setId(id+1);
           }
           else {alert("Todays history price is'nt available yet... Please choose an earlier date than today.")}
         }
@@ -93,15 +94,15 @@ export default function SaveData(props) {
       <div>
       <h2>Bitcoin Portfolio</h2>
       <form id="log-buy" >
-          <div class="ui right labeled input form-inputs">
+          <div className="ui right labeled input form-inputs">
             <input type="text" id="amount" className="form-control" placeholder="Amount..." ref={amountRef}/>
-            <div class="ui basic label">
+            <div className="ui basic label">
                 Bitcoin
             </div>
           </div>
 
-          <div class="ui right labeled input">
-            <div class="ui basic label">
+          <div className="ui right labeled input">
+            <div className="ui basic label">
                 Date
             </div>
             <DatePicker maxDate={moment().toDate()} selected={new Date()} onChange={date => formatDate(date)} />
