@@ -2,7 +2,7 @@
 Bitcoin Diary is a <strong>React</strong>  application that helps you track your Bitcoin portfolio and profits.\
 It was created with the intent to try out the open-source <strong>ApexCharts.js</strong> library for modern chart visualisations.\
 It also includes the most recent news within the Bitcoin area from <strong>NY Times API.</strong>\
-The UI is created with reagular CSS and <strong>Semantic UI</strong>.
+The UI is created with pure CSS and <strong>Semantic UI</strong>.
 
 ## Run the app
 1. Open the project in the text editor of your choice.
@@ -20,13 +20,13 @@ The UI is created with reagular CSS and <strong>Semantic UI</strong>.
 ## Usage
 When the app is up and running you can: 
 - Check out the Bitcoin stock chart. 
-- Save your most recent Bitcoin purschase.
+- Save your most recent Bitcoin purchase.
 - Check out the Bitcoin value in any of the following currencies USD, EUR, GBP 
 - Read Bitcoin relevant news from NY Times.
 
 ## Why the React framework 
 
-First of all, and probably the main reason, we chose React due to the fact that we had used it before and therefor was a bit familiar with in comparison to other frameworks. Further, from usability perspective React are not that difficult to manage if you have some JavaScript knowledge. Of course, other frameworks may as well be easy to learn with some skill in JavaScript. However, React has gained popularity where a large contributing factor is the ease of learning the framework. Leaving us with another argument for choosing React.
+First of all, and probably the main reason, we chose React due to the fact that we had used it before and therefore was a bit familiar with it in comparison to other frameworks. Further, from usability perspective React are not that difficult to manage if you have some JavaScript knowledge. Of course, other frameworks may as well be easy to learn with some skill in JavaScript. However, React has gained popularity where a large contributing factor is the ease of learning the framework. Leaving us with another argument for choosing React.
 
 Since we are beginners in both JavaScript and overall programming, when deciding we focused a lot on the community around the framework. The bigger and stronger community, the better help and guidance would we receive. Angular for example, is famous for its strong community. However, React offers a pretty strong community as well, with loads of contributors and free tutorials. The community in combination with the fact that the framework is easy to learn played the biggest part of our decision.
 
