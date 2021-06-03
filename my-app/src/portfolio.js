@@ -1,5 +1,5 @@
 import React from 'react';
-import PurchaseList from './PurchaseList.js';
+import PurchaseList from './purchaseList.js';
 
 
 export default function Portfolio(props) {
