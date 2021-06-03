@@ -1,6 +1,8 @@
 # Bitcoin Diary
-Bitcoin Diary is a JavaScript application that helps you track your Bitcoin portfolio and profits.
-It also includes the most recent news within the Bitcoin area from the NY Times API.
+Bitcoin Diary is a <strong>React</strong>  application that helps you track your Bitcoin portfolio and profits.\
+It was created with the intent to try out the open-source <strong>ApexCharts.js</strong> library for modern chart visualisations.\
+It also includes the most recent news within the Bitcoin area from <strong>NY Times API.</strong>.\
+The UI is created with reagular CSS and <strong>Sematic UI</strong>.\
 
 ## Run the app
 1. Open the project in the twxt editor of your choice.
@@ -20,6 +22,7 @@ When the app is up and running you can:
 - Check out the Bitcoin stock chart. 
 - Save your most recent Bitcoin purschase.
 - Check out the Bitcoin value in any of the following currencies USD, EUR, GBP 
+- Read Bitcoin relevant news from NY Times.
 
 ## Why the React framework
 
