@@ -4,54 +4,38 @@ import Chart from "react-apexcharts";
 import SaveData from './saveData';
 import Article from './article';
 
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
-
-
 const options = [
 {value: "USD", text: "USD"},
 {value: "EUR", text: "EUR"},
 {value: "GBP", text: "GBP"}
 ]
 
-// const respon = {responsive: [
-//   {
-//     breakpoint: 1000,
-//     width: 95%
-//   }
-// ]}
-// const [mobile, setmobile] = useState(true);
-
-
 function App() {
+  const [load, setLoad] = useState(true);
+  const [price, setPrice] = useState(null);
+  const [currency, setCurrency] = useState("USD");
+  const [chartData, setChartData] = useState(null);
+  const [series, setSeries] = useState(null);
+  const [article, setArticle] = useState(null);
+  let num = 0;
 
-const [load, setLoad] = useState(true);
-const [price, setPrice] = useState(null);
-const [currency, setCurrency] = useState("USD");
-const [chartData, setChartData] = useState(null);
-const [series, setSeries] = useState(null);
-const [article, setArticle] = useState(null);
-let num = 0;
+  function checkLoading() {
+    num+=1
+    num > 1 ? setLoad(false) : console.log("only 1 load done")
+  } 
 
-function checkLoading() {
-  num+=1
-  num > 1 ? setLoad(false) : console.log("only 1 load done")
-} 
-
-//UseEffect the reason for infinity loop doesn't occur anymore?
-useEffect(() => {
-  async function fetchData() {
-    const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
-    const data = await res.json();
-    console.log(data)
-    console.log(data.bpi)
-    setPrice(data.bpi);
-    getChartData(currency);
-    getArticle();
-  }
-  fetchData();
-}, []);
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+      const data = await res.json();
+      console.log(data)
+      console.log(data.bpi)
+      setPrice(data.bpi);
+      getChartData(currency);
+      getArticle();
+    }
+    fetchData();
+  }, []);
 
   const handleSelect = (e, data) => {
     setCurrency(data.value);
@@ -82,7 +66,6 @@ useEffect(() => {
     checkLoading();
   }
 
-
   const getArticle = async()=> {
     const res = await fetch('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=bitcoin&sort=newest&api-key=EpxB0D2US4cMY5RWaAlssDVQ1SQ6nefh');
     const data = await res.json();
@@ -102,9 +85,8 @@ useEffect(() => {
     })
     checkLoading();
   }
-  
+    
   return (
-
     <div className="App">
       <h1>Bitcoin Diary</h1>
         {
@@ -129,19 +111,13 @@ useEffect(() => {
                   <Card.Header>{currency}</Card.Header>
                   <Card.Description>{price[currency].rate}</Card.Description>
                 </Card.Content>
-
               </Card>
 
               <Chart className="chart-visuals" options={chartData}
-              series={series}
-              type="line"
-              width="100%"
-              // { mobileSize ? (
-              //   width="90%"
-              //   ) : (
-              //   )
-              // }
-              height="300"/>
+                series={series}
+                type="line"
+                width="100%"
+                height="300"/>
             </div>
             
             <div>
@@ -149,7 +125,6 @@ useEffect(() => {
             </div>            
             
             <div>
-              {console.log(article)}
               <Article article={article} /> 
             </div>
             </>

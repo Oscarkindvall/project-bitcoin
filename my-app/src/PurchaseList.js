@@ -1,11 +1,7 @@
-import React, {useState} from 'react'
-import { Icon, Statistic } from 'semantic-ui-react'
+import React from 'react'
+import { Icon } from 'semantic-ui-react'
 
-
-
-export default function(props) {
-    
-    console.log(props)
+export default function PurchaseList(props) {
     let buyVal = (parseInt(props.buyObject.bitcoinValue).toFixed(2))
     let currentVal = parseInt(props.currentBitcoinValue.USD.rate_float.toFixed(2))
     let profit = buyVal < currentVal ? true : false
